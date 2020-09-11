@@ -1,0 +1,24 @@
+version: '3'
+services:
+  lb:
+    build: lb
+    ports:
+      - "80:8080"
+    depends_on: 
+      - app
+  db:
+    build: db
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: libraries
+      MYSQL_USER: libuser
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./volumes/mysql/data:/var/lib/mysql
+
+  app:
+    build: app
+    depends_on: 
+      - db
