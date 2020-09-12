@@ -10,13 +10,11 @@ services:
     build: db
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: libraries
+      MYSQL_DATABASE: LIBRARIES
       MYSQL_USER: libuser
       MYSQL_PASSWORD: password
     ports:
       - "3306:3306"
-    volumes:
-      - ./volumes/mysql/data:/var/lib/mysql
 
   app:
     build: app
