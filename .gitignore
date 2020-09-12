@@ -5,3 +5,5 @@
 volumes
 **/node/**
 **/node_modules/**
+**/dist/**
+*.log
