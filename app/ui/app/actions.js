@@ -1,30 +1,33 @@
 import {createAction} from '@reduxjs/toolkit';
 
+// Generic success and failure handling actions
+export const apiCallSuccess = createAction('API_CALL_SUCCESS');
+export const apiCallFailure = createAction('API_CALL_FAILURE');
+
+// Actions for retrieving list of libraries
 export const getLibraries = createAction('GET_LIBRARIES', options => 
   options ? {payload: {params: {...options}}} : {}
 );
 
 export const getLibrariesSuccess = createAction('GET_LIBRARIES_SUCCESS');
-export const getLibrariesFailure = createAction('GET_LIBRARIES_FAILURE');
 
+// Actions for retrieving a single library
 export const getLibrary = createAction('GET_LIBRARY', id => ({payload: {id}}));
-export const getLibrarySuccess = createAction('GET_LIBRARY_SUCCESS');
-export const getLibraryFailure = createAction('GET_LIBRARY_FAILURE');
 
+export const getLibrarySuccess = createAction('GET_LIBRARY_SUCCESS');
+
+// Actions for adding a new library
 export const addLibrary = createAction('ADD_LIBRARY', library => ({
   payload: {data: {...library, completed: false}}
 }))
 
-export const addLibrarySuccess = createAction('ADD_LIBRARY_SUCCESS');
-export const addLibraryFailure = createAction('ADD_LIBRARY_FAILURE');
-
+// Actions for updating an existing library
 export const updateLibrary = createAction('UPDATE_LIBRARY', (id, library) => ({
   payload: {id, data: library}
 }));
 
-export const updateLibrarySuccess = createAction('UPDATE_LIBRARY_SUCCESS');
-export const updateLibraryFailure = createAction('UPDATE_LIBRARY_FAILURE');
-
+// Actions for deleting a specified library
 export const deleteLibrary = createAction('DELETE_LIBRARY', id => ({payload: {id}}));
-export const deleteLibrarySuccess = createAction('DELETE_LIBRARY_SUCCESS');
-export const deleteLibraryFailure = createAction('DELETE_LIBRARY_FAILURE');
+
+// Additional, non rest request actions
+export const clearCurrentLibrary = createAction('CLEAR_CURRENT_LIBRARY');

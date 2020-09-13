@@ -8,17 +8,23 @@ import * as selectors from '../selectors';
 
 const Container = props => (
   <div className="container">
-    <h1>Librerator</h1>
+    <h1>Liberator</h1>
     <Router>
       <Switch>
         <Route path="/detail/:id">
           <LibraryDetail
           {...props}
-          getLibraries={api.getLibraries}
-          getLibrary={api.getLibrary}
           addLibrary={api.addLibrary}
           updateLibrary={api.updateLibrary}
-          deleteLibrary={api.deleteLibrary}
+          />
+        </Route>
+
+        <Route path="/detail">
+          <LibraryDetail
+          {...props}
+          mode='ADD'
+          addLibrary={api.addLibrary}
+          updateLibrary={api.updateLibrary}
           />
         </Route>
 

@@ -8,7 +8,7 @@ public class Library {
 
   @Id
   @Column(name="LIB_ID")
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long libId;
 
   @Column(name="NAME")

@@ -3,22 +3,22 @@ import * as libraries from './actions';
 export default {
   getLibraries: {
     url: '/libraries',
-    actions: [libraries.getLibraries, libraries.getLibrariesSuccess, libraries.getLibrariesFailure]
+    actions: [libraries.getLibraries, libraries.getLibrariesSuccess, libraries.apiCallFailure]
   },
   getLibrary: {
     url: '/libraries/:id',
-    actions: [libraries.getLibrary, libraries.getLibrarySuccess, libraries.getLibraryFailure]
+    actions: [libraries.getLibrary, libraries.getLibrarySuccess, libraries.apiCallFailure]
   },
   addLibrary: {
     url: '/libraries',
-    actions: [libraries.addLibrary, libraries.addLibrarySuccess, libraries.addLibraryFailure]
+    actions: [libraries.addLibrary, libraries.apiCallSuccess, libraries.apiCallFailure]
   },
   updateLibrary: {
     url: '/libraries/:id',
-    actions: [libraries.updateLibrary, libraries.updateLibrarySuccess, libraries.updateLibraryFailure]
+    actions: [libraries.updateLibrary, libraries.apiCallSuccess, libraries.apiCallFailure]
   },
   deleteLibrary: {
     url: '/libraries/:id',
-    actions: [libraries.deleteLibrary, libraries.deleteLibrarySuccess, libraries.deleteLibraryFailure]
+    actions: [libraries.deleteLibrary, libraries.apiCallSuccess, libraries.apiCallFailure]
   }
 }

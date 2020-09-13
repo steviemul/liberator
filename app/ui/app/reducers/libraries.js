@@ -3,14 +3,32 @@ import { start, error } from './helper';
 
 import * as actions from '../actions';
 
+const LIBRARY_STUCTURE = {
+  name: '',
+  downloadCount: 0,
+  author: '',
+  notes: '',
+  url: '',
+  repository: '',
+  version: '' 
+};
+
 const initialState = {
   items: [],
-  currentLibrary: {},
+  currentLibrary: LIBRARY_STUCTURE,
   pending: false,
   error: null
 };
 
 export default createReducer(initialState, {
+  
+  [actions.apiCallSuccess]: state => {
+    state.pending = false;
+  },
+  [actions.apiCallFailure]: (state, action) => {
+    error(state, action);
+  },
+
   [actions.getLibraries]: state => {
     start (state);
   },
@@ -18,18 +36,9 @@ export default createReducer(initialState, {
     state.pending = false;
     state.items = action.payload;
   },
-  [actions.getLibrariesFailure]: (state, action) => {
-    error(state, action);
-  },
 
   [actions.addLibrary]: state => {
     start (state);
-  },
-  [actions.addLibrarySuccess]: (state) => {
-    state.pending = false;
-  },
-  [actions.addLibraryFailure]: (state, action) => {
-    error(state, action);
   },
 
   [actions.getLibrary]: state => {
@@ -39,27 +48,16 @@ export default createReducer(initialState, {
     state.pending = false;
     state.currentLibrary = action.payload;
   },
-  [actions.getLibraryFailure]: (state, action) => {
-    error(state, action);
-  },
 
   [actions.updateLibrary]: state => {
     start (state);
   },
-  [actions.updateLibrarySuccess]: (state) => {
-    state.pending = false;
-  },
-  [actions.updateLibraryFailure]: (state, action) => {
-    error(state, action);
-  },  
 
   [actions.deleteLibrary]: state => {
     start (state);
   },
-  [actions.deleteLibrarySuccess]: (state, action) => {
-    state.pending = false;
-  },
-  [actions.deleteLibraryFailure]: (state, action) => {
-    error(state, action);
+  
+  [actions.clearCurrentLibrary]: state => {
+    state.currentLibrary = LIBRARY_STUCTURE;
   }
 });

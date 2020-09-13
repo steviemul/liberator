@@ -1,14 +1,28 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { NavLink } from 'react-router-dom'
 
-const LibraryDetail = ({currentLibrary, updateLibrary}) => {
+const MODE_ADD = 'ADD';
+const MODE_UPDATE = 'UPDATE';
+
+const LibraryDetail = ({currentLibrary, updateLibrary, addLibrary, mode = MODE_UPDATE}) => {
   
   const [state, setState] = useState(currentLibrary);
 
   const onUpdate = () => {
-    updateLibrary(state.libId, state).then(() => {
-      console.log("success");
-    })
+    switch (mode){
+      case MODE_UPDATE:
+        updateLibrary(state.libId, state).then(() => {
+          console.log("success");
+        });
+
+        break;
+      case MODE_ADD:
+        addLibrary(state).then(() => {
+          console.log("success");
+        })
+
+        break;
+    }
   };
 
   const handleChange = e => {
@@ -18,13 +32,18 @@ const LibraryDetail = ({currentLibrary, updateLibrary}) => {
     })
   };
 
+  useEffect(() => {
+    const elems = document.querySelectorAll('select');
+    M.FormSelect.init(elems);
+  });
+
   return (
     <div>
       <div className="row">
         <form className="col s12">
           <div className="row">
             <div className="input-field col s12 m6">
-              <input placeholder="Name" id="name" type="text" 
+              <input placeholder="Name" required id="name" type="text" 
                 className="validate" 
                 value={state.name} 
                 onChange={handleChange}></input>
@@ -32,7 +51,7 @@ const LibraryDetail = ({currentLibrary, updateLibrary}) => {
               <label htmlFor="name" className="active">Name</label>
             </div>
             <div className="input-field col s12 m6">
-              <input placeholder="Author" id="author" type="text" className="validate" 
+              <input placeholder="Author" required id="author" type="text" className="validate" 
                 value={state.author}
                 onChange={handleChange}></input>
               <label htmlFor="author" className="active">Author</label>
@@ -41,13 +60,13 @@ const LibraryDetail = ({currentLibrary, updateLibrary}) => {
 
           <div className="row">
             <div className="input-field col s12 m6">
-              <input placeholder="Download Count" id="downloadCount" type="text" className="validate"
+              <input placeholder="Download Count" required id="downloadCount" type="number" className="validate"
                 value={state.downloadCount}
                 onChange={handleChange}></input>
               <label htmlFor="downloadCount" className="active">Download Count</label>
             </div>
             <div className="input-field col s12 m6">
-              <input placeholder="Version" id="version" type="text" className="validate" 
+              <input placeholder="Version" required id="version" type="text" className="validate" 
                 value={state.version}
                 onChange={handleChange}></input>
               <label htmlFor="version" className="active">Version</label>
@@ -56,15 +75,15 @@ const LibraryDetail = ({currentLibrary, updateLibrary}) => {
 
           <div className="row">
             <div className="input-field col s12 m6">
-              <select id="repository" value={currentLibrary.repository}
-                onChange={handleChange}>
-                <option value="" disabled>Choose your option</option>
-                <option value="NPM">NPM</option>
-                <option value="Maven">Maven</option>
-                <option value="Nugat">Nugat</option>
-                <option value="PyPI">PyPI</option>
-                <option value="Ruby">RubyGems</option>
-              </select>
+              <div className="select-wrapper">
+                <select id="repository" required value={currentLibrary.repository} onChange={handleChange}>
+                  <option value="NPM">NPM</option>
+                  <option value="Maven">Maven</option>
+                  <option value="Nugat">Nugat</option>
+                  <option value="PyPI">PyPI</option>
+                  <option value="Ruby">RubyGems</option>
+                </select>
+              </div>
               <label htmlFor="repository" className="active">Repository Type</label>
             </div>
             <div className="input-field col s12 m6">
