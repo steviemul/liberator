@@ -1,4 +1,4 @@
-import * as libraries from '../actions';
+import * as libraries from './actions';
 
 export default {
   getLibraries: {

@@ -1,6 +1,6 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { configureApiMiddleware } from 'redux-rest-actions';
-import rootReducer from '../reducers';
+import rootReducer from './reducers';
 
 export default (state) => {
 

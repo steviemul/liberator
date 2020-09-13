@@ -23,6 +23,15 @@ public class Library {
   @Column(name="URL")
   private String url;
 
+  @Column(name="REPOSITORY")
+  private String repository;
+
+  @Column(name="VERSION")
+  private String version;
+
+  @Column(name="NOTES")
+  private String notes;
+
   public long getLibId() {
     return libId;
   }
@@ -61,5 +70,29 @@ public class Library {
 
   public void setUrl(String url) {
     this.url = url;
+  }
+
+  public String getRepository() {
+    return repository;
+  }
+
+  public void setRepository(String repository) {
+    this.repository = repository;
+  }
+
+  public String getVersion() {
+    return version;
+  }
+
+  public void setVersion(String version) {
+    this.version = version;
+  }
+
+  public String getNotes() {
+    return notes;
+  }
+
+  public void setNotes(String notes) {
+    this.notes = notes;
   }
 }

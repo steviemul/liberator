@@ -2,7 +2,7 @@ module.exports = {
   entry: './ui/app/app.js',
   devtool: 'sourcemaps',
   cache: true,
-  mode: 'production',
+  mode: 'development',
   module: {
     rules: [{
       test: /\.(js|jsx)$/,

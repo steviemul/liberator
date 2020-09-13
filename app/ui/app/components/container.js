@@ -1,25 +1,46 @@
 import React from 'react';
 import LibraryList from './library-list';
+import LibraryDetail from './library-detail';
 import { api } from 'redux-rest-actions';
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import * as selectors from '../selectors';
 
 const Container = props => (
-  <div class="container">
+  <div className="container">
     <h1>Librerator</h1>
-    <LibraryList
-      {...props}
-      getLibraries={api.getLibraries}
-      getLibrary={api.getLibrary}
-      addLibrary={api.addLibrary}
-      updateLibrary={api.updateLibrary}
-      deleteLibrary={api.deleteLibrary}
-    />
+    <Router>
+      <Switch>
+        <Route path="/detail/:id">
+          <LibraryDetail
+          {...props}
+          getLibraries={api.getLibraries}
+          getLibrary={api.getLibrary}
+          addLibrary={api.addLibrary}
+          updateLibrary={api.updateLibrary}
+          deleteLibrary={api.deleteLibrary}
+          />
+        </Route>
+
+        <Route path="/">
+            <LibraryList
+            {...props}
+            getLibraries={api.getLibraries}
+            getLibrary={api.getLibrary}
+            addLibrary={api.addLibrary}
+            updateLibrary={api.updateLibrary}
+            deleteLibrary={api.deleteLibrary}
+          />
+        </Route>
+      </Switch>
+    </Router>
+    
   </div>
 );
 
 const mapStateToProps = state => ({
-  libraries: selectors.selectLibraries(state)
+  libraries: selectors.selectLibraries(state),
+  currentLibrary: selectors.currentLibrary(state)
 });
 
 export default connect(mapStateToProps)(Container);

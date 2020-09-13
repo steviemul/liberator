@@ -1,12 +1,12 @@
 package io.steviemul.libraries.api;
 
-import io.steviemul.libraries.LibraryException;
 import io.steviemul.libraries.data.entity.Library;
 import io.steviemul.libraries.service.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 public class Libraries {
@@ -25,7 +25,7 @@ public class Libraries {
   }
 
   @PutMapping("/libraries/{id}")
-  public Library updateLibrary(@RequestBody Library library) throws LibraryException {
+  public Library updateLibrary(@RequestBody Library library) throws ResponseStatusException {
     return libraryService.updateLibrary(library);
   }
 
@@ -35,7 +35,7 @@ public class Libraries {
   }
 
   @DeleteMapping("/libraries/{id}")
-  public ResponseEntity<Void> deleteLibrary(@PathVariable("id") long libraryId) throws LibraryException {
+  public ResponseEntity<Void> deleteLibrary(@PathVariable("id") long libraryId) throws ResponseStatusException {
 
     libraryService.deleteLibrary(libraryId);
 

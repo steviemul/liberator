@@ -1,3 +1,3 @@
 #!/bin/bash
 
-mvn spring-boot:run -f app/pom.xml
+mvn clean spring-boot:run -f app/pom.xml

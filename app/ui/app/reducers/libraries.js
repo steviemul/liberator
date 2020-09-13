@@ -5,7 +5,7 @@ import * as actions from '../actions';
 
 const initialState = {
   items: [],
-  currentLibrary: null,
+  currentLibrary: {},
   pending: false,
   error: null
 };
@@ -37,7 +37,7 @@ export default createReducer(initialState, {
   },
   [actions.getLibrarySuccess]: (state, action) => {
     state.pending = false;
-    state.currentLibrary = action.payload.id;
+    state.currentLibrary = action.payload;
   },
   [actions.getLibraryFailure]: (state, action) => {
     error(state, action);
@@ -56,7 +56,7 @@ export default createReducer(initialState, {
   [actions.deleteLibrary]: state => {
     start (state);
   },
-  [actions.deleteLibrarySuccess]: (state) => {
+  [actions.deleteLibrarySuccess]: (state, action) => {
     state.pending = false;
   },
   [actions.deleteLibraryFailure]: (state, action) => {
