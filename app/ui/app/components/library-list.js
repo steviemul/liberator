@@ -1,21 +1,24 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, {useEffect} from 'react';
 
-const mapStateToProps = () => {
-  return {
-    libraries: [
-      {name: 'test1'},
-      {name: 'test2'}
-    ]
-  }
+const libraries = [
+  {name:'Lib 1'},
+  {name:'Lib 2'}
+];
+
+const LibraryList = props => {
+  const {getLibraries, libraries} = props;
+
+  useEffect(() => {
+    getLibraries();
+  }, []);
+
+  return (
+    <div>
+      {libraries.map((library) => (
+        <div>{library.name}</div>
+      ))}
+    </div>
+  );
 };
 
-const LibraryList = ({libraries}) => (
-  <div>
-    {libraries.map((library) => (
-      <div>{library.name}</div>
-    ))}
-  </div>
-);
-
-export default connect(mapStateToProps)(LibraryList);
+export default LibraryList;
