@@ -1,17 +1,9 @@
 import { combineReducers } from 'redux';
 
-import listReducer from './list';
-import getReducer from './get';
-import addReducer from './add';
-import updateReducer from './update';
-import deleteReducer from './delete';
+import librariesReducer from './libraries';
 
-const librariesReducer = combineReducers({
-  list: listReducer,
-  get: getReducer,
-  add: addReducer,
-  update: updateReducer,
-  delete: deleteReducer
+const mainReducer = combineReducers({
+  libraries: librariesReducer
 });
 
-export default librariesReducer;
+export default mainReducer;

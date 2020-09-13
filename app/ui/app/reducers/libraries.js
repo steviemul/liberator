@@ -4,62 +4,62 @@ import { start, error } from './helper';
 import * as actions from '../actions';
 
 const initialState = {
-  libraries: [],
+  items: [],
   currentLibrary: null,
   pending: false,
   error: null
 };
 
 export default createReducer(initialState, {
-  [actions.getLibraries]: request => {
-    start (request);
+  [actions.getLibraries]: state => {
+    start (state);
   },
-  [actions.getLibrariesSuccess]: (request, action) => {
-    request.pending = false;
-    request.libraries = action.payload;
+  [actions.getLibrariesSuccess]: (state, action) => {
+    state.pending = false;
+    state.items = action.payload;
   },
-  [actions.getLibrariesFailure]: (request, action) => {
-    error(request, action);
-  },
-
-  [actions.addLibrary]: request => {
-    start (request);
-  },
-  [actions.addLibrarySuccess]: (request) => {
-    request.pending = false;
-  },
-  [actions.addLibraryFailure]: (request, action) => {
-    error(request, action);
+  [actions.getLibrariesFailure]: (state, action) => {
+    error(state, action);
   },
 
-  [actions.getLibrary]: request => {
-    start (request);
+  [actions.addLibrary]: state => {
+    start (state);
   },
-  [actions.getLibrarySuccess]: (request, action) => {
-    request.pending = false;
-    request.currentLibrary = action.payload.id;
+  [actions.addLibrarySuccess]: (state) => {
+    state.pending = false;
   },
-  [actions.getLibraryFailure]: (request, action) => {
-    error(request, action);
+  [actions.addLibraryFailure]: (state, action) => {
+    error(state, action);
   },
 
-  [actions.updateLibrary]: request => {
-    start (request);
+  [actions.getLibrary]: state => {
+    start (state);
   },
-  [actions.updateLibrarySuccess]: (request) => {
-    request.pending = false;
+  [actions.getLibrarySuccess]: (state, action) => {
+    state.pending = false;
+    state.currentLibrary = action.payload.id;
   },
-  [actions.updateLibraryFailure]: (request, action) => {
-    error(request, action);
+  [actions.getLibraryFailure]: (state, action) => {
+    error(state, action);
+  },
+
+  [actions.updateLibrary]: state => {
+    start (state);
+  },
+  [actions.updateLibrarySuccess]: (state) => {
+    state.pending = false;
+  },
+  [actions.updateLibraryFailure]: (state, action) => {
+    error(state, action);
   },  
 
-  [actions.deleteLibrary]: request => {
-    start (request);
+  [actions.deleteLibrary]: state => {
+    start (state);
   },
-  [actions.deleteLibrarySuccess]: (request) => {
-    request.pending = false;
+  [actions.deleteLibrarySuccess]: (state) => {
+    state.pending = false;
   },
-  [actions.deleteLibraryFailure]: (request, action) => {
-    error(request, action);
+  [actions.deleteLibraryFailure]: (state, action) => {
+    error(state, action);
   }
 });

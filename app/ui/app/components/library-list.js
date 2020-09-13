@@ -1,10 +1,5 @@
 import React, {useEffect} from 'react';
 
-const libraries = [
-  {name:'Lib 1'},
-  {name:'Lib 2'}
-];
-
 const LibraryList = props => {
   const {getLibraries, libraries} = props;
 
